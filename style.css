@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap');
+
+:root {
+  --bg-main: #f0f9ff;
+  --bg-card: #ffffff;
+  --bg-card-glass: rgba(255, 255, 255, 0.94);
+  --primary-blue: #0284c7;
+  --primary-dark: #0369a1;
+  --primary-deep: #0c4a6e;
+  --primary-cyan: #06b6d4;
+  --primary-cyan-dark: #0891b2;
+  --accent-blue: #38bdf8;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #475569;
+  --border-card: #bae6fd;
+  --border-strong: #0284c7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  background-image: 
+    radial-gradient(circle at 10% 10%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 90% 90%, rgba(2, 132, 199, 0.12) 0%, transparent 45%),
+    linear-gradient(180deg, #f0f9ff 0%, #e0f2fe 45%, #ffffff 100%);
+  background-attachment: fixed;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* InFocus High-Contrast Card Panel */
+.glass-panel {
+  background: var(--bg-card-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--border-card);
+  border-radius: 18px;
+  box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.10), 0 8px 10px -6px rgba(2, 132, 199, 0.05);
+  transition: all 0.25s ease;
+}
+
+.glass-panel:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 15px 30px -5px rgba(2, 132, 199, 0.18);
+}
+
+.glass-panel-glow {
+  background: #ffffff;
+  border: 2px solid var(--primary-blue);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.25), 0 10px 20px rgba(2, 132, 199, 0.1);
+}
+
+/* Big Crisp Typography for InFocus Projector */
+h1, h2, h3, h4, .heading-bold {
+  color: var(--text-primary);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Navigation Tab */
+.nav-tab {
+  font-size: 16px;
+  font-weight: 700;
+  color: #334155;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.nav-tab:hover {
+  color: var(--primary-dark);
+  background-color: #e0f2fe;
+}
+
+.nav-tab.active {
+  color: #0369a1;
+  background-color: #e0f2fe;
+  border-color: #0284c7;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.15);
+}
+
+/* Big Custom Range Sliders */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #cbd5e1;
+  height: 12px;
+  border-radius: 9999px;
+  outline: none;
+  border: 1px solid #94a3b8;
+  transition: all 0.2s;
+}
+
+input[type="range"]:hover {
+  background: #bae6fd;
+  border-color: var(--primary-blue);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 20%, #0284c7 100%);
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.4), 0 0 0 4px rgba(56, 189, 248, 0.35);
+  border: 3px solid #ffffff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.22);
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.6), 0 0 0 6px rgba(56, 189, 248, 0.45);
+}
+
+/* Audio visualizer bars animation */
+.eq-bar {
+  width: 4px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, #0284c7 0%, #06b6d4 100%);
+  animation: eqBounce 1.2s ease-in-out infinite alternate;
+}
+
+.eq-bar:nth-child(1) { height: 6px; animation-delay: 0.1s; }
+.eq-bar:nth-child(2) { height: 18px; animation-delay: 0.3s; }
+.eq-bar:nth-child(3) { height: 12px; animation-delay: 0.5s; }
+.eq-bar:nth-child(4) { height: 22px; animation-delay: 0.2s; }
+.eq-bar:nth-child(5) { height: 10px; animation-delay: 0.4s; }
+
+.eq-paused .eq-bar {
+  animation: none !important;
+  height: 5px !important;
+  opacity: 0.35;
+}
+
+@keyframes eqBounce {
+  0% { height: 5px; }
+  50% { height: 22px; }
+  100% { height: 9px; }
+}
+
+/* Canvas styling - High Contrast for InFocus */
+#simCanvas {
+  touch-action: none;
+  background: radial-gradient(circle at center, #f8fafc 0%, #e2e8f0 100%);
+  border: 2px solid #94a3b8;
+  border-radius: 16px;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Quiz Option - High Contrast & Large Text */
+.quiz-opt {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  border: 2px solid #cbd5e1;
+  background: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.quiz-opt:hover:not(.disabled) {
+  border-color: #0284c7;
+  background: #f0f9ff;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
+}
+
+.quiz-opt.selected {
+  border-color: #0284c7;
+  background: #e0f2fe;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+}
+
+.quiz-opt.correct {
+  border-color: #059669 !important;
+  background: #ecfdf5 !important;
+  color: #065f46 !important;
+}
+
+.quiz-opt.incorrect {
+  border-color: #dc2626 !important;
+  background: #fef2f2 !important;
+  color: #991b1b !important;
+}
+
+/* Big Buzzer Buttons for 2-Team Game */
+.buzzer-btn {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  user-select: none;
+}
+
+.buzzer-btn:active {
+  transform: scale(0.94);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.buzzer-team1 {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border: 4px solid #ffffff;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4), 0 4px 0 #075985;
+}
+
+.buzzer-team2 {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  border: 4px solid #ffffff;
+  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4), 0 4px 0 #0e7490;
+}
+
+/* Confetti animation */
+@keyframes confettiFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(600px) rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  animation: confettiFall 3.5s linear infinite;
+}
+
+/* KaTeX formula font size boost for InFocus */
+.katex {
+  font-size: 1.25em !important;
+}
+
+.formula-card {
+  background: #ffffff;
+  border: 2px solid #bae6fd;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.08);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 5px;
+  border: 2px solid #f1f5f9;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+/* Print simulation report styles */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  header, nav, #audioControls, .no-print {
+    display: none !important;
+  }
+  .glass-panel {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+}
